@@ -1,4 +1,8 @@
 const brandsData = require('../data/brands.json');
+const { validateMatchRequest, MAX_PLAUSIBLE_CM } = require('./validation');
+const { isRateLimited } = require('./rateLimiter');
+
+const MAX_BODY_LENGTH = 10000; // bytes; a legitimate measurements payload is well under 1KB
 
 const CORS_HEADERS = {
   'Access-Control-Allow-Origin': '*',
@@ -22,10 +26,9 @@ function normalizeMeasurement(val, unit) {
   if (val === undefined || val === null || val === '') return null;
   const num = parseFloat(val);
   if (isNaN(num) || num <= 0) return null;
-  if (unit === 'in' || unit === 'inches') {
-    return Math.round(num * 2.54 * 10) / 10;
-  }
-  return Math.round(num * 10) / 10;
+  const cm = unit === 'in' || unit === 'inches' ? num * 2.54 : num;
+  if (cm > MAX_PLAUSIBLE_CM) return null; // implausible input (bad data or abuse attempt), ignore rather than crash
+  return Math.round(cm * 10) / 10;
 }
 
 /**
@@ -97,25 +100,44 @@ exports.handler = async (event, context) => {
     };
   }
 
+  if (isRateLimited(event)) {
+    return {
+      statusCode: 429,
+      headers: { ...CORS_HEADERS, 'Retry-After': '60' },
+      body: JSON.stringify({ error: 'Too many requests. Please slow down and try again shortly.' })
+    };
+  }
+
+  if (event.body && event.body.length > MAX_BODY_LENGTH) {
+    return {
+      statusCode: 413,
+      headers: CORS_HEADERS,
+      body: JSON.stringify({ error: 'Request body too large.' })
+    };
+  }
+
   try {
-    let body = {};
+    let rawBody = {};
     if (event.body) {
-      body = typeof event.body === 'string' ? JSON.parse(event.body) : event.body;
+      try {
+        rawBody = typeof event.body === 'string' ? JSON.parse(event.body) : event.body;
+      } catch (parseError) {
+        return {
+          statusCode: 400,
+          headers: CORS_HEADERS,
+          body: JSON.stringify({ error: 'Request body is not valid JSON.' })
+        };
+      }
     }
 
-    const {
-      product_id,
-      product_category = 'tops',
-      brand: requestedBrand,
-      user_measurements
-    } = body;
-
-    if (!user_measurements || typeof user_measurements !== 'object') {
+    const validation = validateMatchRequest(rawBody);
+    if (!validation.valid) {
       return {
         statusCode: 400,
         headers: CORS_HEADERS,
         body: JSON.stringify({
-          error: 'Missing required field: user_measurements',
+          error: 'Invalid request payload.',
+          details: validation.errors,
           example_payload: {
             product_id: 'zara-slim-shirt-101',
             product_category: 'tops',
@@ -131,6 +153,13 @@ exports.handler = async (event, context) => {
         })
       };
     }
+
+    const {
+      product_id,
+      product_category = 'tops',
+      brand: requestedBrand,
+      user_measurements
+    } = validation.data;
 
     // Resolve brand & product info
     let targetBrandId = requestedBrand ? requestedBrand.toLowerCase() : null;
@@ -275,14 +304,13 @@ exports.handler = async (event, context) => {
     };
 
   } catch (error) {
+    // Full detail goes to server-side logs only; clients get a generic message
+    // so internals (stack traces, file paths, library errors) never leak out.
     console.error('Error processing match-size:', error);
     return {
       statusCode: 500,
       headers: CORS_HEADERS,
-      body: JSON.stringify({
-        error: 'Internal Server Error',
-        message: error.message
-      })
+      body: JSON.stringify({ error: 'Internal Server Error' })
     };
   }
 };
