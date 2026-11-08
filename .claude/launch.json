@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "consumer-portal",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev:portal"],
+      "port": 5173
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+[build]
+  base = "."
+  command = "npm run build:portal"
+  publish = "apps/consumer-portal/dist"
+  functions = "packages/api/functions"
+
+[functions]
+  node_bundler = "esbuild"
+
+# Static bridge page (no JS bundle needed) served at /bridge for the iframe postMessage handshake.
+[[redirects]]
+  from = "/bridge"
+  to = "/bridge.html"
+  status = 200
+
+# SPA fallback so client-side routing (e.g. the React /bridge check) still works if hit directly.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

@@ -1,0 +1,10 @@
+{
+  "name": "@sizer/api",
+  "version": "1.0.0",
+  "private": true,
+  "main": "functions/match-size.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test.js"
+  }
+}

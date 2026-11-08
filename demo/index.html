@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Partner Store Demo — Universal Size Profile</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .size-pill.active, .us-selected-recommendation {
+      border-color: #4f46e5 !important;
+      background-color: #eef2ff !important;
+      color: #4f46e5 !important;
+      font-weight: 700 !important;
+      ring-width: 2px !important;
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-900 font-sans min-h-screen py-10 px-4">
+
+  <!-- Header Banner -->
+  <div class="max-w-5xl mx-auto mb-8 bg-slate-900 text-white rounded-2xl p-6 shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+    <div>
+      <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 mb-2">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        Phase 5: B2B Cross-Origin Sandbox
+      </div>
+      <h1 class="text-xl md:text-2xl font-bold tracking-tight">Partner E-Commerce Store (Dummy Product Page)</h1>
+      <p class="text-xs text-slate-300 mt-1">
+        This dummy store simulates a partner shop (e.g. Origin: <code class="text-amber-300 bg-slate-800 px-1 py-0.5 rounded">http://localhost:3000</code>) embedding the B2B widget script to read size metrics from <code class="text-amber-300 bg-slate-800 px-1 py-0.5 rounded">http://localhost:5173</code> via postMessage.
+      </p>
+    </div>
+    <div class="flex gap-2">
+      <a href="http://localhost:5173" target="_blank" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold rounded-xl shadow transition">
+        Open Consumer Portal ↗
+      </a>
+      <a href="http://localhost:5173/bridge" target="_blank" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-xl transition">
+        Inspect /bridge ↗
+      </a>
+    </div>
+  </div>
+
+  <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+    
+    <!-- Left Column: Product Showcase -->
+    <div class="lg:col-span-8 bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+      
+      <!-- Brand & Product Switcher -->
+      <div class="mb-6 pb-6 border-b border-slate-100 flex flex-wrap items-center justify-between gap-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Switch Partner Brand:</span>
+        <div class="inline-flex rounded-xl bg-slate-100 p-1 text-xs font-medium" id="product-switcher">
+          <button type="button" data-prod="zara-slim-shirt-101" data-brand="zara" class="switcher-btn px-3 py-1.5 rounded-lg bg-white shadow-sm text-indigo-700 font-semibold transition">
+            Zara (Slim Fit)
+          </button>
+          <button type="button" data-prod="hm-relaxed-tee-202" data-brand="hm" class="switcher-btn px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition">
+            H&M (Casual Fit)
+          </button>
+          <button type="button" data-prod="allensolly-formal-shirt-303" data-brand="allensolly" class="switcher-btn px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition">
+            Allen Solly (Indian Fit)
+          </button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+        <!-- Product Image -->
+        <div>
+          <div class="aspect-[4/5] bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 relative shadow-inner">
+            <img id="product-image" src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600&auto=format&fit=crop&q=80" alt="Product" class="w-full h-full object-cover object-top transition duration-300">
+            <span id="product-badge" class="absolute top-3 left-3 bg-black/75 backdrop-blur text-white text-[11px] font-bold px-2.5 py-1 rounded-md">
+              ZARA MAN
+            </span>
+          </div>
+        </div>
+
+        <!-- Product Purchase Column -->
+        <div class="flex flex-col justify-between">
+          <div>
+            <div class="text-xs font-semibold uppercase text-indigo-600 mb-1" id="product-category-label">
+              Men's Tops &bull; Tailored Edition
+            </div>
+            <h2 class="text-2xl font-bold text-slate-900 leading-tight" id="product-title">
+              Zara Tailored Oxford Shirt
+            </h2>
+            <div class="flex items-center gap-2 mt-2">
+              <span class="text-xl font-bold text-slate-900" id="product-price">₹3,990</span>
+              <span class="text-xs text-emerald-600 font-semibold bg-emerald-50 px-2 py-0.5 rounded">In Stock</span>
+            </div>
+
+            <!-- INJECTED UNIVERSAL SIZE PROFILE WIDGET MOUNT POINT -->
+            <div class="mt-6 mb-4">
+              <!-- Target mount with data-size-widget and data-product-id -->
+              <div
+                id="sizer-widget-mount"
+                data-size-widget
+                data-product-id="zara-slim-shirt-101"
+                data-brand="zara"
+                data-category="tops"
+              >
+                <!-- Widget replaces this placeholder -->
+                <div class="p-3 bg-slate-50 border border-dashed border-slate-200 rounded-xl text-xs text-slate-400 text-center animate-pulse">
+                  Initializing Universal Size Widget...
+                </div>
+              </div>
+            </div>
+
+            <!-- Native Store Size Selector -->
+            <div class="mt-4">
+              <div class="flex justify-between items-center text-xs font-semibold uppercase text-slate-700 mb-2">
+                <span>Select Size</span>
+                <span class="text-slate-400 font-normal">Native Store Selector</span>
+              </div>
+              <div class="grid grid-cols-6 gap-2" id="native-size-buttons">
+                <button type="button" class="size-pill py-2.5 border border-slate-200 rounded-xl text-xs font-semibold text-slate-700 hover:border-slate-300 transition" data-size="XS">XS</button>
+                <button type="button" class="size-pill py-2.5 border border-slate-200 rounded-xl text-xs font-semibold text-slate-700 hover:border-slate-300 transition" data-size="S">S</button>
+                <button type="button" class="size-pill py-2.5 border border-slate-200 rounded-xl text-xs font-semibold text-slate-700 hover:border-slate-300 transition" data-size="M">M</button>
+                <button type="button" class="size-pill py-2.5 border border-slate-200 rounded-xl text-xs font-semibold text-slate-700 hover:border-slate-300 transition" data-size="L">L</button>
+                <button type="button" class="size-pill py-2.5 border border-slate-200 rounded-xl text-xs font-semibold text-slate-700 hover:border-slate-300 transition" data-size="XL">XL</button>
+                <button type="button" class="size-pill py-2.5 border border-slate-200 rounded-xl text-xs font-semibold text-slate-700 hover:border-slate-300 transition" data-size="XXL">XXL</button>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" class="mt-6 w-full bg-slate-900 hover:bg-slate-800 text-white font-semibold py-3.5 px-4 rounded-xl text-sm shadow transition">
+            Add to Shopping Cart
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Verification Diagnostics Console -->
+    <div class="lg:col-span-4 space-y-5">
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+        <h3 class="text-sm font-bold uppercase tracking-wider text-slate-800 flex items-center gap-2 mb-3">
+          <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          Live Sandbox Diagnostics
+        </h3>
+
+        <div class="space-y-3 text-xs">
+          <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+            <span class="text-slate-400 block mb-0.5">Iframe Bridge Status:</span>
+            <span id="diag-bridge-status" class="font-bold text-amber-600">Connecting to /bridge...</span>
+          </div>
+
+          <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+            <span class="text-slate-400 block mb-0.5">Measurements Received:</span>
+            <pre id="diag-measurements" class="text-[11px] font-mono text-slate-800 overflow-x-auto mt-1">// Waiting for postMessage...</pre>
+          </div>
+
+          <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+            <span class="text-slate-400 block mb-0.5">Netlify API Match Endpoint:</span>
+            <span class="font-mono text-slate-700 text-[11px] break-all">http://localhost:8888/.netlify/functions/match-size</span>
+          </div>
+        </div>
+
+        <!-- Quick Simulate Local Storage in Current Frame -->
+        <div class="mt-5 pt-4 border-t border-slate-100">
+          <span class="text-xs font-semibold text-slate-700 block mb-2">Simulate Quick LocalStorage Profiles:</span>
+          <div class="grid grid-cols-3 gap-2">
+            <button type="button" onclick="simulateProfile('S', 90, 76, 43)" class="px-2 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-medium transition">
+              Set S (90cm)
+            </button>
+            <button type="button" onclick="simulateProfile('M', 98, 84, 45)" class="px-2 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-medium transition">
+              Set M (98cm)
+            </button>
+            <button type="button" onclick="simulateProfile('L', 106, 92, 48)" class="px-2 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-medium transition">
+              Set L (106cm)
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive script to handle product switcher & local simulation -->
+  <script>
+    const PRODUCTS = {
+      'zara-slim-shirt-101': {
+        brand: 'zara',
+        badge: 'ZARA MAN',
+        category: 'Men\'s Tops • Tailored Edition',
+        title: 'Zara Tailored Oxford Shirt',
+        price: '₹3,990',
+        image: 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600&auto=format&fit=crop&q=80'
+      },
+      'hm-relaxed-tee-202': {
+        brand: 'hm',
+        badge: 'H&M REGULAR',
+        category: 'Casual Wear • Everyday Cotton',
+        title: 'H&M Essential Relaxed Fit Tee',
+        price: '₹999',
+        image: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=600&auto=format&fit=crop&q=80'
+      },
+      'allensolly-formal-shirt-303': {
+        brand: 'allensolly',
+        badge: 'ALLEN SOLLY',
+        category: 'Formal Shirts • Indian Sizing',
+        title: 'Allen Solly Classic Formal Shirt',
+        price: '₹1,799',
+        image: 'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=600&auto=format&fit=crop&q=80'
+      }
+    };
+
+    // Product switcher buttons
+    document.querySelectorAll('.switcher-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.switcher-btn').forEach(b => {
+          b.className = 'switcher-btn px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition';
+        });
+        btn.className = 'switcher-btn px-3 py-1.5 rounded-lg bg-white shadow-sm text-indigo-700 font-semibold transition';
+
+        const prodId = btn.getAttribute('data-prod');
+        const prod = PRODUCTS[prodId];
+        if (prod) {
+          document.getElementById('product-title').innerText = prod.title;
+          document.getElementById('product-price').innerText = prod.price;
+          document.getElementById('product-badge').innerText = prod.badge;
+          document.getElementById('product-category-label').innerText = prod.category;
+          document.getElementById('product-image').src = prod.image;
+
+          // Update widget mount element
+          const mount = document.getElementById('sizer-widget-mount');
+          mount.setAttribute('data-product-id', prodId);
+          mount.setAttribute('data-brand', prod.brand);
+
+          // Refresh widget
+          if (window.UniversalSizeWidget) {
+            window.UniversalSizeWidget.refresh();
+          }
+        }
+      });
+    });
+
+    // Native size pills click handling
+    document.querySelectorAll('.size-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        document.querySelectorAll('.size-pill').forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+      });
+    });
+
+    // Diagnostics updater via message listener
+    window.addEventListener('message', (event) => {
+      if (event.data && event.data.type === 'SIZE_PROFILE_METRICS') {
+        const statusEl = document.getElementById('diag-bridge-status');
+        const measEl = document.getElementById('diag-measurements');
+        if (statusEl) {
+          statusEl.innerText = 'Connected & Received via postMessage ✅';
+          statusEl.className = 'font-bold text-emerald-600';
+        }
+        if (measEl) {
+          measEl.innerText = event.data.data ? JSON.stringify(event.data.data, null, 2) : 'No profile saved in portal (empty state active)';
+        }
+      }
+    });
+
+    // Local profile simulator for sandbox
+    function simulateProfile(size, chest, waist, shoulders) {
+      const payload = {
+        height: 175,
+        chest: chest,
+        waist: waist,
+        shoulders: shoulders,
+        unit: 'cm',
+        fit_preference: 'Standard',
+        updated_at: new Date().toISOString()
+      };
+      // Set in current frame storage as well as bridge
+      window.localStorage.setItem('size_profile_metrics', JSON.stringify(payload));
+      
+      // Dispatch message to widget
+      window.postMessage({
+        type: 'SIZE_PROFILE_METRICS',
+        data: payload
+      }, '*');
+
+      // Also notify bridge iframe if present
+      const iframe = document.getElementById('universal-size-bridge-frame');
+      if (iframe && iframe.contentWindow) {
+        iframe.contentWindow.postMessage({
+          type: 'SIZE_PROFILE_METRICS',
+          data: payload
+        }, '*');
+      }
+    }
+  </script>
+
+  <!-- PHASE 4 & 5: INJECT COMPILED B2B WIDGET SCRIPT -->
+  <script
+    src="/dist/size-widget.iife.js"
+    data-portal-url="http://localhost:5173"
+    data-bridge-path="/bridge"
+    data-api-url="http://localhost:8888/.netlify/functions/match-size"
+  ></script>
+
+</body>
+</html>

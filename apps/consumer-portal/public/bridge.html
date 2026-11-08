@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Universal Size Profile Bridge</title>
+</head>
+<body style="margin:0;padding:0;background:transparent;">
+  <script>
+    (function() {
+      const STORAGE_KEY = 'size_profile_metrics';
+
+      function broadcast() {
+        try {
+          const raw = window.localStorage.getItem(STORAGE_KEY);
+          const data = raw ? JSON.parse(raw) : null;
+          const payload = {
+            type: 'SIZE_PROFILE_METRICS',
+            source: 'universal-size-bridge',
+            data: data,
+            timestamp: Date.now()
+          };
+          window.parent.postMessage(payload, '*');
+        } catch (e) {
+          console.error('[Bridge HTML] Error reading localStorage:', e);
+        }
+      }
+
+      // 1. Broadcast immediately upon load
+      broadcast();
+
+      // 2. Respond to handshake requests
+      window.addEventListener('message', function(event) {
+        if (!event.data) return;
+        if (event.data.type === 'GET_SIZE_PROFILE' || event.data.type === 'REFRESH_SIZE_PROFILE') {
+          broadcast();
+        }
+      });
+
+      // 3. Listen for storage changes across tabs
+      window.addEventListener('storage', function(e) {
+        if (e.key === STORAGE_KEY) {
+          broadcast();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

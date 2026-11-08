@@ -1,0 +1,292 @@
+{
+  "brands": [
+    {
+      "id": "zara",
+      "name": "Zara",
+      "fit_type": "Slim / European Fit",
+      "description": "Tailored cut, fits closer to the chest and shoulders. Zara India stores and zara.com/in use the same EU-numbered chart as the rest of the world.",
+      "source": "Zara official men's size guide (EU garment sizing, EU46-EU54 mapped to S-XXL), as published for Zara India stores and zara.com/in.",
+      "categories": {
+        "tops": {
+          "category_name": "Tops & Shirts",
+          "sizes": [
+            {
+              "size": "XS",
+              "measurements": {
+                "chest": { "min": 82, "max": 87 },
+                "waist": { "min": 68, "max": 73 },
+                "shoulders": { "min": 40, "max": 42 },
+                "height": { "min": 160, "max": 170 }
+              }
+            },
+            {
+              "size": "S",
+              "measurements": {
+                "chest": { "min": 88, "max": 93 },
+                "waist": { "min": 74, "max": 79 },
+                "shoulders": { "min": 42, "max": 44 },
+                "height": { "min": 165, "max": 175 }
+              }
+            },
+            {
+              "size": "M",
+              "measurements": {
+                "chest": { "min": 94, "max": 99 },
+                "waist": { "min": 80, "max": 85 },
+                "shoulders": { "min": 44, "max": 46 },
+                "height": { "min": 170, "max": 180 }
+              }
+            },
+            {
+              "size": "L",
+              "measurements": {
+                "chest": { "min": 100, "max": 105 },
+                "waist": { "min": 86, "max": 91 },
+                "shoulders": { "min": 46, "max": 48 },
+                "height": { "min": 175, "max": 185 }
+              }
+            },
+            {
+              "size": "XL",
+              "measurements": {
+                "chest": { "min": 106, "max": 112 },
+                "waist": { "min": 92, "max": 98 },
+                "shoulders": { "min": 48, "max": 50 },
+                "height": { "min": 180, "max": 190 }
+              }
+            },
+            {
+              "size": "XXL",
+              "measurements": {
+                "chest": { "min": 113, "max": 119 },
+                "waist": { "min": 99, "max": 105 },
+                "shoulders": { "min": 50, "max": 52 },
+                "height": { "min": 185, "max": 195 }
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "hm",
+      "name": "H&M",
+      "fit_type": "Regular / Modern Casual",
+      "description": "Standard regular fit with comfortable room in chest and waist. H&M India sells the same international size run as other markets.",
+      "source": "H&M official international men's chest chart, cross-checked against H&M India product listings (size-chart tab on hm.com/en_in).",
+      "categories": {
+        "tops": {
+          "category_name": "Tops & Shirts",
+          "sizes": [
+            {
+              "size": "XS",
+              "measurements": {
+                "chest": { "min": 84, "max": 89 },
+                "waist": { "min": 70, "max": 75 },
+                "shoulders": { "min": 41, "max": 43 },
+                "height": { "min": 160, "max": 170 }
+              }
+            },
+            {
+              "size": "S",
+              "measurements": {
+                "chest": { "min": 90, "max": 95 },
+                "waist": { "min": 76, "max": 81 },
+                "shoulders": { "min": 43, "max": 45 },
+                "height": { "min": 165, "max": 175 }
+              }
+            },
+            {
+              "size": "M",
+              "measurements": {
+                "chest": { "min": 96, "max": 101 },
+                "waist": { "min": 82, "max": 87 },
+                "shoulders": { "min": 45, "max": 47 },
+                "height": { "min": 170, "max": 180 }
+              }
+            },
+            {
+              "size": "L",
+              "measurements": {
+                "chest": { "min": 102, "max": 107 },
+                "waist": { "min": 88, "max": 93 },
+                "shoulders": { "min": 47, "max": 49 },
+                "height": { "min": 175, "max": 185 }
+              }
+            },
+            {
+              "size": "XL",
+              "measurements": {
+                "chest": { "min": 108, "max": 114 },
+                "waist": { "min": 94, "max": 100 },
+                "shoulders": { "min": 49, "max": 51 },
+                "height": { "min": 180, "max": 190 }
+              }
+            },
+            {
+              "size": "XXL",
+              "measurements": {
+                "chest": { "min": 115, "max": 121 },
+                "waist": { "min": 101, "max": 107 },
+                "shoulders": { "min": 51, "max": 53 },
+                "height": { "min": 185, "max": 195 }
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "allensolly",
+      "name": "Allen Solly",
+      "fit_type": "Classic / Indian Formal Fit",
+      "description": "Aditya Birla Fashion & Retail brand, one of India's most widely stocked formal/casual shirt brands (Myntra, Ajio, standalone stores). Uses traditional Indian numeric shirt sizing (38/40/42/44/46/48 = chest in inches) rather than Western alpha sizing, and runs roomier through the chest/waist than European brands at the same alpha label — the convention most Indian shoppers actually size against.",
+      "source": "Allen Solly numeric shirt sizing (38-48in chest), converted from inches to cm and re-mapped to S-XXL labels; cross-checked against the generic Indian men's shirt size chart used across Indian e-commerce (Myntra/Ajio size guides, onlineclothingstudy.com comparative chart) where brand-exact cm figures are not published.",
+      "categories": {
+        "tops": {
+          "category_name": "Shirts",
+          "sizes": [
+            {
+              "size": "S",
+              "measurements": {
+                "chest": { "min": 89, "max": 94 },
+                "waist": { "min": 76, "max": 81 },
+                "shoulders": { "min": 42, "max": 44 },
+                "height": { "min": 160, "max": 170 }
+              }
+            },
+            {
+              "size": "M",
+              "measurements": {
+                "chest": { "min": 96, "max": 102 },
+                "waist": { "min": 83, "max": 88 },
+                "shoulders": { "min": 44, "max": 46 },
+                "height": { "min": 165, "max": 175 }
+              }
+            },
+            {
+              "size": "L",
+              "measurements": {
+                "chest": { "min": 104, "max": 109 },
+                "waist": { "min": 90, "max": 95 },
+                "shoulders": { "min": 46, "max": 48 },
+                "height": { "min": 170, "max": 180 }
+              }
+            },
+            {
+              "size": "XL",
+              "measurements": {
+                "chest": { "min": 112, "max": 117 },
+                "waist": { "min": 97, "max": 102 },
+                "shoulders": { "min": 48, "max": 50 },
+                "height": { "min": 175, "max": 185 }
+              }
+            },
+            {
+              "size": "XXL",
+              "measurements": {
+                "chest": { "min": 119, "max": 125 },
+                "waist": { "min": 104, "max": 109 },
+                "shoulders": { "min": 50, "max": 52 },
+                "height": { "min": 180, "max": 190 }
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "indian-standard",
+      "name": "Indian Retail Standard",
+      "fit_type": "Relaxed / Generic Indian E-commerce Fit",
+      "description": "Not a single brand — a generic reference chart representative of the men's topwear size guide shown across Indian e-commerce (Myntra, Ajio, Nykaa Fashion) when a specific brand chart isn't available. Useful as a fallback match for Indian-market private-label and smaller D2C brands.",
+      "source": "Generic Indian-market men's chest-cm size bands (S 95-100, M 100-105, L 105-110, XL 110-115, XXL 115-120), as used by Indian/APAC-focused retail aggregators (e.g. Zalora's India-style chart) and typical Myntra/Ajio seller size-guide bands; waist/shoulder/height bands derived proportionally since most Indian listings only publish chest.",
+      "categories": {
+        "tops": {
+          "category_name": "Tops & T-Shirts",
+          "sizes": [
+            {
+              "size": "S",
+              "measurements": {
+                "chest": { "min": 95, "max": 100 },
+                "waist": { "min": 81, "max": 86 },
+                "shoulders": { "min": 43, "max": 45 },
+                "height": { "min": 160, "max": 170 }
+              }
+            },
+            {
+              "size": "M",
+              "measurements": {
+                "chest": { "min": 100, "max": 105 },
+                "waist": { "min": 86, "max": 91 },
+                "shoulders": { "min": 45, "max": 47 },
+                "height": { "min": 165, "max": 175 }
+              }
+            },
+            {
+              "size": "L",
+              "measurements": {
+                "chest": { "min": 105, "max": 110 },
+                "waist": { "min": 91, "max": 96 },
+                "shoulders": { "min": 47, "max": 49 },
+                "height": { "min": 170, "max": 180 }
+              }
+            },
+            {
+              "size": "XL",
+              "measurements": {
+                "chest": { "min": 110, "max": 115 },
+                "waist": { "min": 96, "max": 101 },
+                "shoulders": { "min": 49, "max": 51 },
+                "height": { "min": 175, "max": 185 }
+              }
+            },
+            {
+              "size": "XXL",
+              "measurements": {
+                "chest": { "min": 115, "max": 120 },
+                "waist": { "min": 101, "max": 106 },
+                "shoulders": { "min": 51, "max": 53 },
+                "height": { "min": 180, "max": 190 }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "mock_products": {
+    "zara-slim-shirt-101": {
+      "id": "zara-slim-shirt-101",
+      "brand_id": "zara",
+      "title": "Zara Tailored Oxford Shirt",
+      "category": "tops",
+      "price": "₹3,990",
+      "image": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600&auto=format&fit=crop&q=80"
+    },
+    "hm-relaxed-tee-202": {
+      "id": "hm-relaxed-tee-202",
+      "brand_id": "hm",
+      "title": "H&M Essential Relaxed Fit Tee",
+      "category": "tops",
+      "price": "₹999",
+      "image": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=600&auto=format&fit=crop&q=80"
+    },
+    "allensolly-formal-shirt-303": {
+      "id": "allensolly-formal-shirt-303",
+      "brand_id": "allensolly",
+      "title": "Allen Solly Classic Formal Shirt",
+      "category": "tops",
+      "price": "₹1,799",
+      "image": "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=600&auto=format&fit=crop&q=80"
+    },
+    "indian-standard-cotton-tee-404": {
+      "id": "indian-standard-cotton-tee-404",
+      "brand_id": "indian-standard",
+      "title": "Everyday Cotton Crew Tee (Generic Indian D2C Fit)",
+      "category": "tops",
+      "price": "₹599",
+      "image": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=600&auto=format&fit=crop&q=80"
+    }
+  }
+}

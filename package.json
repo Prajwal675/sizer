@@ -1,0 +1,21 @@
+{
+  "name": "universal-size-profile-root",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:portal": "npm --workspace=@sizer/consumer-portal run dev",
+    "dev:widget": "npm --workspace=@sizer/b2b-widget run dev",
+    "dev:api": "npm --workspace=@sizer/api run start",
+    "build:portal": "npm --workspace=@sizer/consumer-portal run build",
+    "build:widget": "npm --workspace=@sizer/b2b-widget run build",
+    "build": "npm run build:portal && npm run build:widget",
+    "test:api": "npm --workspace=@sizer/api run test",
+    "test:e2e": "node test-e2e.js",
+    "test": "npm run test:api && npm run test:e2e",
+    "demo": "node scripts/serve-demo.js"
+  }
+}
